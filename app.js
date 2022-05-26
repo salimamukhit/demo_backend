@@ -48,4 +48,16 @@ app.get('/api/v1/customers/all', jsonParser, async function (req, res) {
     res.send(cus);
 });
 
+app.delete('/api/v1/customers/customer', jsonParser, async function (req, res) {
+   await controller.deleteCustomer(req.body.customerId);
+
+   res.sendStatus(200);
+});
+
+app.delete('/api/v1/customers/accounts/account', jsonParser, async function (req, res) {
+    await controller.deleteAccount(req.body.accountId);
+
+    res.sendStatus(200);
+});
+
 app.listen(3000, async function () {});

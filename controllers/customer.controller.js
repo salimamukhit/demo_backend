@@ -16,6 +16,22 @@ exports.createCustomer = (customer) => {
         });
 };
 
+exports.deleteCustomer = (customerId) => {
+    return Customer.destroy({
+            where: {
+                id: customerId,
+            }
+        })
+        .then((rowDeleted) => {
+            if(rowDeleted === 1) {
+                console.log(">> Deleted customer successfully");
+            }
+        })
+        .catch((err) => {
+           console.log(">> Error while deleting a customer: ", err);
+        });
+};
+
 exports.createAccount = (customerId, account) => {
     return Account.create({
         number: account.number,
@@ -29,6 +45,22 @@ exports.createAccount = (customerId, account) => {
         .catch((err) => {
             console.log(">> Error while creating account: ", err);
         });
+};
+
+exports.deleteAccount = (accountId) => {
+    return Account.destroy({
+        where: {
+            id: accountId,
+        }
+    })
+        .then((rowDeleted) => {
+            if(rowDeleted === 1) {
+                console.log(">> Deleted account successfully");
+            }
+        })
+        .catch((err) => {
+            console.log(">> Error while deleting an account: ", err);
+        })
 };
 
 exports.findCustomerById = (customerId) => {
